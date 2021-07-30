@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Route } from 'react-router';
-import { Navbar, Container, Nav, NavDropdown, Button, Form, FormControl  } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav, NavDropdown, Button, Form, FormControl } from 'react-bootstrap';
+import Detail from './Detail';
 
 function App() {
 
@@ -33,12 +35,12 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">RESIN_WORK Shop</Navbar.Brand>
+          <Navbar.Brand><Link to="/">RESIN_WORK Shop</Link></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link><Link to="/">Home</Link></Nav.Link>
+              <Nav.Link><Link to="/detail">Detail</Link></Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -55,6 +57,7 @@ function App() {
         </Container>
       </Navbar>
     </div>
+    <Route exact path="/">
     <div class='p-5 mb-4 bg-light rounded-3' className="bg">
       <div class="container-fluid py-5">
         <h1 class="displya-5 fw-bold">Resin Art Accessories</h1>
@@ -69,18 +72,22 @@ function App() {
         })//map함수를 사용하여 배열을 가공하고 반복된 개수만큼 다른결과를 낸다
       }
       </div>
-     </div>  
+    </div> 
+    </Route> 
+    <Route path="/detail/:id">
+      <div><Detail cdata={cdata}/></div>
+    </Route>
 
-     <Route exact path="/">
+     {/* <Route exact path="/">
         <div>
           메인 페이지
         </div>
       </Route>
-     <Route exact path="/detail">
+     <Route exact path="/detail" component={detail}>
         <div>
           상세 페이지
         </div>
-      </Route>
+      </Route> */}
     </>
   );
 }
